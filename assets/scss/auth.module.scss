@@ -1,0 +1,41 @@
+.auth {
+  &__title {
+    @apply text-3xl font-bold mb-6 text-black text-center dark:text-white;
+  }
+
+  &__subtitle {
+    @apply text-sm font-semibold mb-6 text-neutral-500 text-center dark:text-neutral-400;
+  }
+
+  &__form {
+    @apply space-y-4;
+  }
+
+  &__form-group {
+    @apply mb-4;
+  }
+
+  &__label {
+    @apply block text-sm font-medium text-neutral-700 dark:text-white;
+  }
+
+  &__input {
+    @apply mt-1 p-2 w-full border border-neutral-500 rounded-md focus:border-neutral-200 focus:outline-none transition-colors duration-300 dark:bg-neutral-800 dark:text-white;
+  }
+
+  &__button {
+    @apply w-full bg-black text-white p-2 rounded-md hover:bg-neutral-800 focus:bg-black outline-none transition-colors duration-300 dark:bg-neutral-800 dark:hover:bg-neutral-100 dark:hover:text-black font-bold;
+  }
+
+  &__message {
+    @apply mt-4 text-sm text-neutral-600 text-center dark:text-neutral-400 font-semibold;
+  }
+
+  &__link {
+    @apply text-black hover:underline cursor-pointer dark:text-white font-semibold;
+  }
+
+  &__error {
+    @apply mt-4 text-sm text-red-600 text-center dark:text-red-400 font-semibold;
+  }
+}

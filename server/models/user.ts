@@ -31,6 +31,11 @@ export const User = defineMongooseModel(
       type: String,
       required: false,
     },
+    role: {
+      enum: ["user", "mod"],
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

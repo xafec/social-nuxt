@@ -7,25 +7,33 @@
 </template>
 
 <script lang="ts" setup>
-  useHead({
-    title: "Profile - Nuxt.js + Tailwind",
-  });
-  const user = ref<any>(null);
-  const route = useRoute();
-  const isFetching = ref(true);
+useHead({
+  title: "Profile - Nuxt.js + Tailwind",
+});
 
-  onMounted(async () => {
-    setTimeout(async () => {
-      const { data, error } = await useFetch(
-        `/api/user/${route.params.username}`
-      );
+definePageMeta({
+  middleware: "auth",
+});
 
-      if (data.value && !error.value) {
-        user.value = data.value;
-        isFetching.value = false;
-      }
-    });
+const user = ref<any>(null);
+const route = useRoute();
+const isFetching = ref(true);
+
+onMounted(async () => {
+  setTimeout(async () => {
+    const { data, error } = await useFetch(
+      `/api/user/${route.params.username}`
+    );
+
+    if (data.value && !error.value) {
+      user.value = data.value;
+      isFetching.value = false;
+      useHead({
+        title: `${user.value.username} - Nuxt.js + Tailwind`,
+      })
+    }
   });
+});
 </script>
 
 <style></style>

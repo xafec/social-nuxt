@@ -13,16 +13,17 @@
     "@nuxt/devtools": "latest",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
-    "nuxt": "^3.8.2",
+    "nuxt": "3.9.0",
     "nuxt-mongoose": "^1.0.3",
-    "sass": "^1.69.5",
-    "vue": "^3.3.8",
+    "sass": "1.69.6",
+    "vue": "3.4.3",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@nuxt/ui": "^2.11.0",
     "@pinia/nuxt": "^0.5.1",
     "bcrypt": "^5.1.1",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.22.4"
   }
 }
