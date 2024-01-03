@@ -1,12 +1,11 @@
 <template>
   <div class="sidebar">
-    <div class="sidebar-content">
-      <ul class="sidebar-content-list">
-        <li v-for="link in links" :key="link.name" class="sidebar-content-item">
-          <NuxtLink :to="link.link" class="sidebar-content-link" @click="handleLinkClick(link)">
-            <UIcon :name="link.icon" class="sidebar-content-icon" dynamic />
-            <span class="sidebar-content-text">{{ link.name }}</span>
-          </NuxtLink>
+    <div class="sidebar__main">
+      <div v-for="link in links" :key="link.name" class="sidebar-item">
+        <NuxtLink :to="link.link" class="sidebar-content-link" @click="handleLinkClick(link)">
+          <UIcon :name="link.icon" class="sidebar-content-icon" dynamic />
+          <span class="sidebar-content-text">{{ link.name }}</span>
+        </NuxtLink>
         </li>
       </ul>
     </div>
