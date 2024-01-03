@@ -33,7 +33,7 @@ export const useMyAuthStore = defineStore({
   actions: {
     async signup(username: string, email: string, password: string) {
       try {
-        await fetch("/api/auth/signup", {
+        const response = await fetch("/api/auth/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -44,13 +44,24 @@ export const useMyAuthStore = defineStore({
             password,
           }),
         });
-        navigateTo("/auth/signin");
-        useToast().add({
-          id: "signup",
-          title: "Account created successfully",
-          icon: "i-heroicons-check-circle",
-          color: "cyan",
-        });
+        if (response.ok) {
+          navigateTo("/auth/signin");
+          useToast().add({
+            id: "signup",
+            title: "Аккаунт создан",
+            icon: "i-heroicons-information-circle-solid",
+            color: "cyan",
+          });
+        } else {
+          useToast().add({
+            id: "signup",
+            title: "Ошибка создания аккаунта",
+            description: `${response.statusText}`,
+            icon: "i-heroicons-exclamation-circle-solid",
+            color: "red",
+          });
+          throw new Error(response.statusText);
+        }
       } catch (error: any) {
         throw new Error(error);
       }
@@ -87,11 +98,18 @@ export const useMyAuthStore = defineStore({
           navigateTo("/");
           useToast().add({
             id: "signin",
-            title: "Signed in successfully",
-            icon: "i-heroicons-check-circle",
+            title: "Успешный вход",
+            icon: "i-heroicons-check-badge-solid",
             color: "green",
           });
         } else {
+          useToast().add({
+            id: "signin",
+            title: "Ошибка входа",
+            description: `${response.statusText}`,
+            icon: "i-heroicons-x-circle-solid",
+            color: "red",
+          });
           throw new Error(response.statusText);
         }
       } catch (error: any) {
@@ -116,12 +134,13 @@ export const useMyAuthStore = defineStore({
         navigateTo("/auth/signin");
         useToast().add({
           id: "signout",
-          title: "Signed out successfully",
-          icon: "i-heroicons-light-bulb",
+          title: "Успешный выход",
+          icon: "i-heroicons-exclamation-triangle-solid",
           color: "orange",
         });
       } catch (error: any) {
         clearLocalStorage();
+        navigateTo("/auth/signin");
         throw new Error(error);
       }
     },
@@ -145,6 +164,13 @@ export const useMyAuthStore = defineStore({
         } else {
           clearLocalStorage();
           navigateTo("/auth/signin");
+          useToast().add({
+            id: "refresh",
+            title: "Ошибка обновления токена",
+            description: `${response.statusText}`,
+            icon: "i-heroicons-exclamation-circle-solid",
+            color: "red",
+          });
           throw new Error(response.statusText);
         }
       } catch (error: any) {

@@ -1,0 +1,12 @@
+// default layout variables
+$layout-sidebar-width: 220px;
+$layout-max-content-width: 660px;
+$layout-max-width: $layout-max-content-width + $layout-sidebar-width + 10px;
+$layout-offset-y: 16px;
+$layout-content-offset-x: 24px;
+
+// header variables
+$header-height: 60px;
+
+// sidebar variables
+$sidebar-height: calc 100vh;

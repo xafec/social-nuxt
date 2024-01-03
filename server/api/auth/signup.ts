@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       name: "",
       avatarUrl: "",
       bannerUrl: "",
-      bio: "",
+      description: "",
       role: "user",
     });
     return {

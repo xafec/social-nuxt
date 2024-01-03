@@ -31,6 +31,15 @@ onMounted(async () => {
       useHead({
         title: `${user.value.username} - Nuxt.js + Tailwind`,
       })
+    } else {
+      isFetching.value = true;
+      navigateTo("/");
+      useToast().add({
+        id: "user-not-found",
+        title: "Пользователь не найден",
+        icon: "i-heroicons-x-circle-solid",
+        color: "red",
+      });
     }
   });
 });

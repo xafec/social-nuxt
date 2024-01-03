@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
         name: 1,
         avatarUrl: 1,
         bannerUrl: 1,
-        bio: 1,
+        description: 1,
       }
     );
     if (!user) {

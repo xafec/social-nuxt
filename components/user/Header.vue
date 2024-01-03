@@ -1,31 +1,47 @@
 <template>
-  <div class="flex flex-col max-w-full md:rounded-2xl rounded-b-2xl overflow-hidden border border-neutral-700">
-    <div class="flex flex-col w-full flex-1">
-      <div class="w-full overflow-hidden">
-        <div class="aspect-[7/3] md:aspect-[6/2] lg:aspect-[3.5/1] w-full h-full bg-neutral-200 dark:bg-neutral-700">
-          <img v-if="user.bannerUrl" alt="banner" class="object-cover w-full h-full" :src="user.bannerUrl" />
+  <div class="profile">
+    <div class="profile-cover">
+      <div class="profile-cover__image">
+        <img v-if="user.bannerUrl" alt="cover" :src="user.bannerUrl" />
+      </div>
+    </div>
+    <div class="profile-info">
+      <div class="profile-info__header">
+        <div class="profile-info__avatar">
+          <img v-if="user.avatarUrl" alt="Logo" :src="user.avatarUrl" />
+        </div>
+        <div class="profile-info__actions">
+          <button v-if="useMyAuthStore().username !== user.username" class="button button__primary button__size-m">
+            Написать
+          </button>
+          <UPopover :popper="{ placement: 'bottom-end' }" :ui="{ rounded: 'rounded-xl' }"
+            v-if="useMyAuthStore().username !== user.username">
+            <button class="h-9 button button__secondary button__size-m ml-2 button__icon">
+              <UIcon name="i-heroicons-ellipsis-horizontal-20-solid" class="w-5 h-5" />
+            </button>
+            <template #panel>
+              <div class="popover">
+                <div class="popover__item">
+                  <UIcon name="i-heroicons-flag-solid" class="popover__item__icon" />
+                  Пожаловаться
+                </div>
+              </div>
+            </template>
+          </UPopover>
         </div>
       </div>
-      <div class="flex flex-col md:flex-row items-center pb-5 md:px-5 md:h-28 dark:bg-neutral-800 bg-white">
-        <div
-          class="w-32 h-32 -mt-[4rem] md:w-36 md:h-36 md:-mt-[4.5rem] lg:w-40 lg:h-40 lg:-mt-[5rem] rounded-full overflow-hidden border-2 dark:border-neutral-700 border-neutral-200 bg-white dark:bg-neutral-800">
-          <img v-if="user.avatarUrl" alt="Logo" class="rounded-full object-cover" :src="user.avatarUrl" />
-          <div v-else class="rounded-full flex h-full items-center justify-center">
-            <span class="text-5xl font-bold">{{ user.name ? user.name[0] : "" }}{{ user.username[0] }}</span>
-          </div>
-        </div>
-        <div class="flex flex-row md:pl-5 flex-1">
-          <div>
-            <h1 class="flex text-2xl font-bold mt-2 md:mt-3.5 justify-center md:justify-start">
-              {{ user.name ? user.name + "&nbsp;" : "" }}
-              <span class="text-blue-500">{{ user.username }}</span>
-            </h1>
-            <div class="text-gray-500 justify-self-center md:justify-self-start dark:text-gray-300">
-              <p class="line-clamp-1">{{ user.bio }}</p>
-            </div>
-          </div>
-        </div>
+      <h1 class="profile-info__name">
+        <span class="text-blue-500">{{ user.username }}</span>
+        {{ user.name ? user.name : "" }}
+      </h1>
+      <div class="profile-info__description">
+        {{ user.description ? user.description : "" }}
       </div>
+      <!-- <div class="profile-info__stats">
+        <div class="profile-info__stat">
+          {{ user.followers.length }} подписчиков 
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -39,4 +55,68 @@ defineProps({
 });
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "~/assets/scss/variables.module.scss";
+@import "~/assets/scss/button.module.scss";
+
+.profile {
+  @apply flex flex-col w-full md:rounded-xl rounded-b-xl overflow-hidden bg-white dark:bg-neutral-800;
+
+  .profile-cover {
+    @apply overflow-hidden aspect-[640/200] bg-neutral-200 dark:bg-neutral-700;
+
+    &__image {
+      @apply max-w-none h-full;
+
+      img {
+        --cover-offset-y: 39%;
+        @apply object-cover w-full h-full;
+        object-position: 0 var(--cover-offset-y, 50%);
+      }
+    }
+  }
+
+  .profile-info {
+    padding: 0 $layout-content-offset-x;
+
+    &__header {
+      @apply flex gap-2 items-end mb-3
+    }
+
+    &__avatar {
+      @apply w-24 h-24 -mt-9 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_0_3px] dark:shadow-neutral-800 shadow-white;
+    }
+
+    &__actions {
+      @apply flex mt-2 ml-auto;
+    }
+
+    &__name {
+      @apply font-bold mb-2;
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    &__description {
+      @apply mb-6;
+    }
+  }
+}
+
+.popover {
+  @apply p-1.5 w-[200px];
+
+  &__item {
+    @apply p-1.5 cursor-pointer hover:bg-neutral-400 dark:hover:bg-neutral-800 rounded-md inline-flex items-center w-full;
+
+    &__icon {
+      @apply text-xl mr-2;
+    }
+
+    &:not(:last-child) {
+      @apply mb-1;
+    }
+  }
+}
+</style>
+

@@ -1,13 +1,11 @@
 <template>
   <div class="sidebar">
     <div class="sidebar__main">
-      <div v-for="link in links" :key="link.name" class="sidebar-item">
-        <NuxtLink :to="link.link" class="sidebar-content-link" @click="handleLinkClick(link)">
-          <UIcon :name="link.icon" class="sidebar-content-icon" dynamic />
-          <span class="sidebar-content-text">{{ link.name }}</span>
-        </NuxtLink>
-        </li>
-      </ul>
+      <NuxtLink v-for="link in links" :key="link.name" :to="link.link" class="sidebar-item"
+        @click="handleLinkClick(link)">
+        <UIcon :name="link.icon" class="sidebar-item__icon" dynamic />
+        {{ link.name }}
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -28,7 +26,7 @@ const links = [
   {
     name: "Новости",
     link: "/",
-    icon: "i-heroicons-home-solid",
+    icon: "i-heroicons-newspaper-solid",
     action: "navigate"
   },
   {
@@ -39,7 +37,7 @@ const links = [
   },
   {
     name: "Выход",
-    link: "/",
+    link: "/auth/signin",
     icon: "i-heroicons-arrow-left-end-on-rectangle-16-solid",
     action: "signout"
   }
@@ -54,30 +52,23 @@ function handleLinkClick(link: any) {
 
 <style lang="scss" scoped>
 .sidebar {
-  @apply md:sticky md:top-16 flex md:flex-col md:w-48 w-full bottom-0 absolute z-10;
-}
+  @apply h-full grid grid-cols-[1fr_auto];
 
-.sidebar-content {
-  @apply w-full h-16 md:h-full md:pr-4 flex md:block justify-center md:justify-start border-t md:border-none rounded-t-3xl md:rounded-none;
-}
+  &__main {
+    @apply px-2.5;
 
-.sidebar-content-list {
-  @apply md:mt-0 w-full flex md:flex-col justify-evenly md:justify-start items-center md:items-start;
-}
+    .sidebar-item {
+      @apply h-11 dark:text-neutral-100 font-medium text-neutral-700 px-2.5 flex items-center rounded-xl cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-800;
 
-.sidebar-content-item {
-  @apply inline-flex items-center md:w-full rounded-md overflow-hidden hover:bg-neutral-200 dark:hover:bg-neutral-800;
-}
+      &__icon {
+        @apply text-2xl mr-3;
+      }
 
-.sidebar-content-link {
-  @apply px-2 py-2 flex items-center h-full w-full;
-}
+      &:not(:last-child) {
+        @apply mb-1;
+      }
+    }
 
-.sidebar-content-icon {
-  @apply md:text-[22px] leading-[1.75rem] text-3xl;
-}
-
-.sidebar-content-text {
-  @apply ml-2.5 hidden md:block text-sm;
+  }
 }
 </style>

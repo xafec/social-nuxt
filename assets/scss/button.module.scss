@@ -1,0 +1,27 @@
+.button {
+  @apply transition-colors duration-75 inline-flex justify-center items-center leading-4 font-semibold cursor-pointer whitespace-nowrap;
+
+  &__size {
+    &-m {
+      @apply rounded-lg px-3.5 py-2.5;
+    }
+
+    &-l {
+      @apply rounded-xl px-6 py-3.5 w-full;
+    }
+  }
+
+  &__icon {
+    @apply p-0 w-[38px];
+  }
+
+  &__primary {
+    @apply bg-blue-600 text-white hover:bg-blue-500;
+  }
+
+  &__secondary {
+    @apply bg-neutral-700 text-white hover:bg-neutral-600;
+  }
+
+  font-size: 15px;
+}

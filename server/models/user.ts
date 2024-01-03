@@ -27,7 +27,7 @@ export const User = defineMongooseModel(
       type: String,
       required: false,
     },
-    bio: {
+    description: {
       type: String,
       required: false,
     },
