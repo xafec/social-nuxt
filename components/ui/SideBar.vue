@@ -1,8 +1,7 @@
 <template>
   <div class="sidebar">
     <div class="sidebar__main">
-      <NuxtLink v-for="link in links" :key="link.name" :to="link.link" class="sidebar-item"
-        @click="handleLinkClick(link)">
+      <NuxtLink v-for="link in links" :key="link.name" :to="link.link" class="sidebar-item">
         <UIcon :name="link.icon" class="sidebar-item__icon" dynamic />
         {{ link.name }}
       </NuxtLink>
@@ -11,15 +10,10 @@
 </template>
 
 <script lang="ts" setup>
-let username = "";
-if (process.client) {
-  username = useMyAuthStore().username
-}
-
-const links = [
+let links: any[] = [
   {
     name: "Профиль",
-    link: "/user/" + username,
+    link: "/u/",
     icon: "i-heroicons-user-circle-solid",
     action: "navigate"
   },
@@ -37,17 +31,11 @@ const links = [
   },
   {
     name: "Выход",
-    link: "/auth/signin",
+    link: "/auth/signout",
     icon: "i-heroicons-arrow-left-end-on-rectangle-16-solid",
     action: "signout"
   }
-]
-
-function handleLinkClick(link: any) {
-  if (link.action === "signout") {
-    useMyAuthStore().signout();
-  }
-}
+];
 </script>
 
 <style lang="scss" scoped>

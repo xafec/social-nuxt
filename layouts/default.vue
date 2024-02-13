@@ -1,13 +1,14 @@
 <template>
   <div class="flex w-full h-full flex-col">
-    <UiDefaultHeader />
+    <UiHeader />
     <div class="layout">
-      <div class="layout__aside">
-        <UiSideBar />
+      <div class="aside aside__left">
+        <UiSidebar />
       </div>
-      <div class="layout__main">
+      <div class="main">
         <slot />
       </div>
+      <div class="aside aside__right"></div>
     </div>
   </div>
 </template>
@@ -18,19 +19,53 @@
 .layout {
   display: grid;
   width: 100%;
-  grid-template-columns: $layout-sidebar-width $layout-max-content-width;
+  grid-template-columns: 1fr;
   margin: 0 auto;
-  max-width: $layout-max-width;
+  padding-top: $header-height;
+  max-width: $layout-max-content-width;
   justify-content: space-between;
 
-  &__aside {
-    height: 100%;
-    padding-top: $layout-offset-y;
+  @media (min-width: 920px) {
+    grid-template-columns: $layout-aside-left-width $layout-max-content-width;
+    max-width: $layout-middle-width;
   }
 
-  &__main {
+  @media (min-width: 1280px) {
+    grid-template-columns: $layout-aside-left-width $layout-max-content-width $layout-aside-right-width;
+    max-width: $layout-large-width;
+  }
+
+  .aside {
+    position: sticky;
+    top: $header-height;
+    height: calc(100vh - $header-height);
+
+    &__left {
+      display: none;
+      padding-top: $layout-offset-y;
+
+      @media (min-width: 920px) {
+        display: block;
+      }
+    }
+
+    &__right {
+      display: none;
+      padding-top: $layout-offset-y;
+
+      @media (min-width: 1280px) {
+        display: block;
+      }
+    }
+  }
+
+  .main {
     height: 100%;
     padding-top: $layout-offset-y;
+
+    @media (max-width: 660px) {
+      @apply pt-0;
+    }
   }
 }
 </style>

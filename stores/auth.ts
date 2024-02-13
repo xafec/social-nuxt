@@ -47,14 +47,14 @@ export const useMyAuthStore = defineStore({
         if (response.ok) {
           navigateTo("/auth/signin");
           useToast().add({
-            id: "signup",
+            id: "success",
             title: "Аккаунт создан",
             icon: "i-heroicons-information-circle-solid",
             color: "cyan",
           });
         } else {
           useToast().add({
-            id: "signup",
+            id: "error",
             title: "Ошибка создания аккаунта",
             description: `${response.statusText}`,
             icon: "i-heroicons-exclamation-circle-solid",
@@ -95,16 +95,16 @@ export const useMyAuthStore = defineStore({
           this.token = token;
           this.username = username;
           this.role = role;
-          navigateTo("/");
+          window.location.href = "/";
           useToast().add({
-            id: "signin",
+            id: "success",
             title: "Успешный вход",
             icon: "i-heroicons-check-badge-solid",
             color: "green",
           });
         } else {
           useToast().add({
-            id: "signin",
+            id: "error",
             title: "Ошибка входа",
             description: `${response.statusText}`,
             icon: "i-heroicons-x-circle-solid",
@@ -133,7 +133,7 @@ export const useMyAuthStore = defineStore({
         this.role = "";
         navigateTo("/auth/signin");
         useToast().add({
-          id: "signout",
+          id: "success",
           title: "Успешный выход",
           icon: "i-heroicons-exclamation-triangle-solid",
           color: "orange",
@@ -163,9 +163,12 @@ export const useMyAuthStore = defineStore({
           this.role = role;
         } else {
           clearLocalStorage();
+          this.token = "";
+          this.username = "";
+          this.role = "";
           navigateTo("/auth/signin");
           useToast().add({
-            id: "refresh",
+            id: "error",
             title: "Ошибка обновления токена",
             description: `${response.statusText}`,
             icon: "i-heroicons-exclamation-circle-solid",

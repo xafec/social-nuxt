@@ -12,9 +12,7 @@ export default defineNuxtConfig({
     "/auth/": {
       redirect: "/auth/signin",
     },
-    "/user/": {
-      redirect: "/",
-    },
+    "/api/**": { cors: true },
   },
   mongoose: {
     uri: "mongodb://127.0.0.1:27017/nuxt",

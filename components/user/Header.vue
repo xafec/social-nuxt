@@ -28,6 +28,10 @@
               </div>
             </template>
           </UPopover>
+          <button v-if="useMyAuthStore().username === user.username"
+            class="h-9 button button__secondary button__size-m ml-2" @click="$router.push(`/settings`)">
+            Редактировать профиль
+          </button>
         </div>
       </div>
       <h1 class="profile-info__name">
@@ -60,7 +64,11 @@ defineProps({
 @import "~/assets/scss/button.module.scss";
 
 .profile {
-  @apply flex flex-col w-full md:rounded-xl rounded-b-xl overflow-hidden bg-white dark:bg-neutral-800;
+  @apply flex flex-col w-full rounded-xl overflow-hidden bg-white dark:bg-neutral-800;
+
+  @media (max-width: 660px) {
+    @apply rounded-none;
+  }
 
   .profile-cover {
     @apply overflow-hidden aspect-[640/200] bg-neutral-200 dark:bg-neutral-700;
