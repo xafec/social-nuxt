@@ -1,6 +1,6 @@
 # Social Network
 
-> Hi, I'm Violet, a passionate web developer who loves to create. This is my attempt to build a social network like Twitter or VK, or maybe something in between. I'm not sure yet, but I'm having fun exploring the possibilities. This is my long-time dream and now that I've learned vue, I want to learn nuxt and make it come true.
+> Hi, I'm a passionate web developer who loves to create. This is my attempt to build a social network like Twitter or VK, or maybe something in between. I'm not sure yet, but I'm having fun exploring the possibilities. This is my long-time dream and now that I've learned vue, I want to learn nuxt and make it come true.
 >
 > This project is still a work in progress, but you can check out the future features and screenshots below. You can also clone this repo and run it locally if you want to see it in action or contribute to it. I welcome any feedback or suggestions. Thank you for reading!
 
