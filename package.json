@@ -13,9 +13,9 @@
     "@nuxt/devtools": "1.0.8",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
-    "nuxt": "3.10.1",
+    "nuxt": "3.10.2",
     "nuxt-mongoose": "1.0.5",
-    "sass": "1.70.0",
+    "sass": "1.71.0",
     "vue": "3.4.19",
     "vue-router": "^4.2.5"
   },
