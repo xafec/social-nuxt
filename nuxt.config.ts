@@ -15,15 +15,15 @@ export default defineNuxtConfig({
     "/api/**": { cors: true },
   },
   mongoose: {
-    uri: "mongodb://127.0.0.1:27017/nuxt",
+    uri: process.env.MONGODB_URI,
     modelsDir: "models",
   },
   runtimeConfig: {
     JWT_SECRET:
-      "3442905344bfe124c8fde4d16411580f30113c0f321a5687f7aa8134a13162289ab1a24e887c076d88cb392e8d5f22eb524e49514f7eac85d497c84428586ecd",
+      "f5b48efbad009dd6ffe01e2d2d43ce6e67ec8e6a3e94c1a2b8ff4907319ec210f097a0e6ec1fb24cc0498a926fd0b15cc5171b3d92a231bbcfd65f4aca7c33c5",
     JWT_EXPIRATION_TIME: "15s",
     JWT_ACCESS_TOKEN_SECRET:
-      "d88d90af4573b63aee42deb46dd8cbd5c8b0e389f8c2ce49d6ea1dd8b35ee722d83261b09497323051d032510dd6e067480ab85c323a0bbeda90eda1c017ae54",
+      "aa2fcec5e10cb54af588e60709abcaa38f874c15cd92ade80f82d226199573736b347269f0822a11662dd50e7f4c9343667d3b7a500e4698dd5c624e9796220a",
     JWT_ACCESS_TOKEN_EXPIRATION_TIME: "30d",
   },
 });

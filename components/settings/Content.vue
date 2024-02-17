@@ -1,10 +1,9 @@
 <template>
-  <div class="content">
-    <div class="content__header">
-      In Development
-    </div>
-    <div class="h-11 px-2.5 flex items-center rounded-xl cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700">
-      asdad
+  <div class="settings-wrapper">
+    <div class="settings">
+      <div class="settings__item">
+        asdad
+      </div>
     </div>
   </div>
 </template>
@@ -16,15 +15,19 @@
 <style lang="scss" scoped>
 @import "~/assets/scss/variables.module.scss";
 
-.content {
-  @apply w-full;
+.settings-wrapper {
+  @apply flex flex-col w-full rounded-b-xl overflow-hidden bg-white dark:bg-neutral-800;
 
-  &__header {
-    @apply border-b py-4 font-medium border-neutral-200 dark:border-neutral-700;
-    padding-right: $layout-content-offset-x;
-    padding-left: $layout-content-offset-x;
+  @media (max-width: 640px) {
+    @apply rounded-none;
   }
 
-  &__body {}
+  .settings {
+    @apply w-full p-2;
+
+    &__item {
+      @apply px-2.5 flex items-center rounded-xl cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700;
+    }
+  }
 }
 </style>

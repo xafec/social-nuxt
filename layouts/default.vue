@@ -3,9 +3,9 @@
     <UiHeader />
     <div class="layout">
       <div class="aside aside__left">
-        <UiSidebar />
+        <UiSideBar />
       </div>
-      <div class="main">
+      <div class="view">
         <slot />
       </div>
       <div class="aside aside__right"></div>
@@ -59,7 +59,7 @@
     }
   }
 
-  .main {
+  .view {
     height: 100%;
     padding-top: $layout-offset-y;
 
